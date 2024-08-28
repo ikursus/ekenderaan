@@ -26,4 +26,9 @@ class LoginController extends Controller
         return $request->except('_token');
     }
 
+    public function logout()
+    {
+        return redirect()->route('login');
+    }
+
 }

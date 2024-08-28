@@ -11,9 +11,11 @@ Route::get('/', function() {
 });
 
 // Halaman Login ('/login')
-Route::get('/login', [LoginController::class, 'paparkanBorangLogin']);
+Route::get('/login', [LoginController::class, 'paparkanBorangLogin'])->name('login');
 // Route untuk terima data daripada borang login
-Route::post('/login', [LoginController::class, 'dapatkanDataLogin']);
+Route::post('/login', [LoginController::class, 'dapatkanDataLogin'])->name('login.authenticate');
+// Route untuk logout
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Halaman Dashboard ('/dashboard')
 Route::get('/dashboard', DashboardController::class)->name('gelaran.dashboard');

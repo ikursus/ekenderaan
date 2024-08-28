@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,6 +15,9 @@ class UserController extends Controller
         $userInAktif = 20;
         $userBanned = 5;
         $userPending = 10;
+
+        // Panggil data senarai users daripada table users
+        $senaraiUsers = DB::table('users')->get();
 
         // Cara 1 attach/passing data daripada pembolehubah (variable) kepada template
         // return view('users.template-senarai-users')
@@ -29,7 +33,8 @@ class UserController extends Controller
         // Cara 3 attach/passing data daripada pembolehubah (variable) kepada template
         return view('users.template-senarai-users', compact(
             'userAktif',
-            'userInAktif'
+            'userInAktif',
+            'senaraiUsers'
         ));
 
     }
@@ -39,10 +44,42 @@ class UserController extends Controller
         return view('users.template-tambah-user');
     }
 
-    public function simpanRekodUserBaru()
+
+
+
+
+
+
+    public function simpanRekodUserBaru(Request $request)
     {
+        // Proses Validasi Borang
+        $data = $request->validate( [
+            'first_name' => 'required|string|min:3',
+            'last_name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email:filter', 'unique:users,email'],
+            'password' => ['required', 'min:4', 'confirmed'],
+            'role' => ['required', 'in:admin,user']
+        ] );
+
+        // Encrypt password
+        $data['password'] = bcrypt( $request->input('password') );
+
+        // Simpan data ke table users
+        DB::table('users')->insert($data);
+
+        // Bagi response redirect ke senarai users jika berjaya simpan
+        return redirect()->route('users.getSenaraiUsers')
+        ->with('mesej-berjaya', 'Rekod berjaya disimpan');
 
     }
+
+
+
+
+
+
+
+
 
     public function paparDetailUser()
     {

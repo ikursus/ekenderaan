@@ -6,7 +6,7 @@
     <li class="breadcrumb-item active">Tambah User Baru</li>
 </ol>
 
-<form method="POST" action="">
+<form method="POST" action="{{ route('users.simpanRekodUserBaru') }}">
     @csrf
     <div class="card mb-4">
         <div class="card-header">
@@ -14,21 +14,23 @@
         </div>
         <div class="card-body">
 
+            @include('layouts.alerts')
+
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="text" name="first_name" class="form-control" placeholder="First Name">
+                    <input type="text" name="first_name" class="form-control" placeholder="First Name" value="{{ old('first_name') }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <input type="text" name="last_name" class="form-control" placeholder="First Name">
+                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Alamat Emel">
+                    <input type="email" name="email" class="form-control" placeholder="Alamat Emel" value="{{ old('email') }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <input type="text" name="phone" class="form-control" placeholder="No. Telefon">
+                    <input type="text" name="phone" class="form-control" placeholder="No. Telefon" value="{{ old('phone') }}">
                 </div>
             </div>
 
@@ -43,11 +45,18 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
+
+
                     <select name="role" class="form-control">
                         <option value="">-- Pilih Role --</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
+
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected="selected"' : NULL }}>Admin</option>
+
+                        <option value="user" {{ old('role') == 'user' ? 'selected="selected"' : NULL }}>User</option>
+
                     </select>
+
+
                 </div>
             </div>
 

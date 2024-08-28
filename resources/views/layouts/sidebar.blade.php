@@ -37,7 +37,7 @@
                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                 Profile
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('logout') }}">
                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                 Log Out
             </a>
