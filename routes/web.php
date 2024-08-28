@@ -16,7 +16,7 @@ Route::get('/login', [LoginController::class, 'paparkanBorangLogin']);
 Route::post('/login', [LoginController::class, 'dapatkanDataLogin']);
 
 // Halaman Dashboard ('/dashboard')
-Route::get('/ruangan-ahli-yang-baru', DashboardController::class)->name('gelaran.dashboard');
+Route::get('/dashboard', DashboardController::class)->name('gelaran.dashboard');
 // Route::get(uri, callback);
 
 // Halaman Senarai Users ('/users')

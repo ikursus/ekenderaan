@@ -555,7 +555,5 @@
 
 
 @push('js-additional')
-<script>
-    alert('Selamat Datang')
-</script>
+
 @endpush
