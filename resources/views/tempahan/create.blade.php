@@ -18,42 +18,62 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="text" name="first_name" class="form-control" placeholder="First Name" value="{{ old('first_name') }}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" value="{{ old('last_name') }}">
-                </div>
-            </div>
+                    <select name="jenis_kenderaan" class="form-control">
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <input type="email" name="email" class="form-control" placeholder="Alamat Emel" value="{{ old('email') }}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <input type="text" name="phone" class="form-control" placeholder="No. Telefon" value="{{ old('phone') }}">
-                </div>
-            </div>
+                        <option value="">-- Jenis Kenderaan --</option>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                        <option value="sedan" {{ old('jenis_kenderaan') == 'sedan' ? 'selected="selected"' : NULL }}>Sedan</option>
+                        <option value="mpv" {{ old('jenis_kenderaan') == 'mpv' ? 'selected="selected"' : NULL }}>MPV</option>
+                        <option value="suv" {{ old('jenis_kenderaan') == 'suv' ? 'selected="selected"' : NULL }}>SUV</option>
+
+                    </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <input type="password" name="password_confirmation" class="form-control" placeholder="Taip Semula Password">
+                    <input type="text" name="no_kenderaan" class="form-control" placeholder="No. Kenderaan" value="{{ old('no_kenderaan') }}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <input type="text" name="nama_pemandu" class="form-control" placeholder="Nama Pemandu" value="{{ old('nama_pemandu') }}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <input type="date" name="tarikh_tempahan" class="form-control" placeholder="Tarikh Tempahan" value="{{ old('tarikh_tempahan') }}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <input type="date" name="tarikh_mula" class="form-control" placeholder="Tarikh Mula Guna" value="{{ old('tarikh_mula') }}">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <input type="date" name="tarikh_akhir" class="form-control" placeholder="Tarikh Akhir Guna" value="{{ old('tarikh_akhir') }}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input type="text" name="tujuan" class="form-control" placeholder="Tujuan">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <input type="text" name="alamat_destinasi" class="form-control" placeholder="Destinasi">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
 
 
-                    <select name="role" class="form-control">
-                        <option value="">-- Pilih Role --</option>
+                    <select name="status" class="form-control">
+                        <option value="">-- Pilih Status --</option>
 
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected="selected"' : NULL }}>Admin</option>
+                        <option value="pending" {{ old('status') == 'pending' ? 'selected="selected"' : NULL }}>Pending</option>
 
-                        <option value="user" {{ old('role') == 'user' ? 'selected="selected"' : NULL }}>User</option>
+                        <option value="lulus" {{ old('status') == 'lulus' ? 'selected="selected"' : NULL }}>Lulus</option>
 
+                        <option value="ditolak" {{ old('status') == 'ditolak' ? 'selected="selected"' : NULL }}>Ditolak</option>
+
+                        <option value="batal" {{ old('status') == 'batal' ? 'selected="selected"' : NULL }}>Batal</option>
                     </select>
 
 
