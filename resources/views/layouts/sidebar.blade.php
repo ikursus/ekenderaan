@@ -27,8 +27,8 @@
             </a>
             <div class="collapse" id="collapseTempahan" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="#">Senarai Tempahan</a>
-                    <a class="nav-link" href="#">Tempahan Baru</a>
+                    <a class="nav-link" href="{{ route('tempahan.index') }}">Senarai Tempahan</a>
+                    <a class="nav-link" href="{{ route('tempahan.create') }}">Tempahan Baru</a>
                 </nav>
             </div>
 

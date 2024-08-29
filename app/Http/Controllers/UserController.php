@@ -18,7 +18,8 @@ class UserController extends Controller
         $userRoleUser = DB::table('users')->where('role', '=', 'user')->count();
 
         // Panggil data senarai users daripada table users
-        $senaraiUsers = DB::table('users')->get();
+        // $senaraiUsers = DB::table('users')->get();
+        $senaraiUsers = DB::table('users')->paginate(5);
 
         // Cara 1 attach/passing data daripada pembolehubah (variable) kepada template
         // return view('users.template-senarai-users')
@@ -88,18 +89,66 @@ class UserController extends Controller
 
     }
 
-    public function paparBorangEditUser()
-    {
 
+
+    public function paparBorangEditUser($id)
+    {
+        // Dapatkan rekod user berdasarkan ID
+        $user = DB::table('users')->where('id', '=', $id)->first();
+
+        return view('users.template-edit-user', compact('user'));
     }
 
-    public function simpanRekodEditUser()
-    {
 
+
+
+
+
+    public function simpanRekodEditUser(Request $request, $id)
+    {
+        // Proses Validasi Borang
+        $data = $request->validate( [
+            'first_name' => 'required|string|min:3',
+            'last_name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email:filter', 'unique:users,email,' . $id],
+            'role' => ['required', 'in:admin,user']
+        ] );
+
+        // Semak jika ruangan password tidak kosong
+        if( $request->has('password') && $request->filled('password'))
+        {
+            // Validate password
+            $request->validate([
+                'password' => ['min:4', 'confirmed']
+            ]);
+
+            // Kemudian attach password kepada $data
+            $data['password'] = bcrypt($request->input('password'));
+        }
+
+        // Update rekod user berdasarkan ID User
+        DB::table('users')->where('id', $id)->update($data);
+
+        // Bagi respon akhir iaitu redirect dengan mesej berjaya
+        return redirect()->route('users.getSenaraiUsers')
+        ->with('mesej-berjaya', 'Rekod User Berjaya Dikemaskini');
     }
 
-    public function deleteRekodUser()
-    {
 
+
+
+
+
+
+
+
+    public function deleteRekodUser($id)
+    {
+        // Delete Rekod user berdasarkan ID
+        DB::table('users')->where('id', $id)->delete();
+
+        // Bagi respon akhir iaitu redirect dengan mesej berjaya
+        return redirect()->route('users.getSenaraiUsers')
+        ->with('mesej-berjaya', 'Rekod berjaya dihapuskan');
     }
 }
