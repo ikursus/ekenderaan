@@ -10,11 +10,12 @@ class UserController extends Controller
     public function getSenaraiUsers()
     {
 
-        // Senarai users yang aktif
-        $userAktif = '50';
-        $userInAktif = 20;
-        $userBanned = 5;
-        $userPending = 10;
+        // Dapat jumlah senarai users daripada table users
+        $userTotal = DB::table('users')->count();
+        // Dapatkan jumlah senarai users berstatus role admin
+        $userRoleAdmin = DB::table('users')->where('role', '=', 'admin')->count();
+        // Dapatkan jumlah senarai users berstatus role user
+        $userRoleUser = DB::table('users')->where('role', '=', 'user')->count();
 
         // Panggil data senarai users daripada table users
         $senaraiUsers = DB::table('users')->get();
@@ -32,8 +33,9 @@ class UserController extends Controller
 
         // Cara 3 attach/passing data daripada pembolehubah (variable) kepada template
         return view('users.template-senarai-users', compact(
-            'userAktif',
-            'userInAktif',
+            'userTotal',
+            'userRoleAdmin',
+            'userRoleUser',
             'senaraiUsers'
         ));
 

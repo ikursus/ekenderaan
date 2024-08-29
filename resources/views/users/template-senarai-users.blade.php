@@ -6,11 +6,11 @@
     <li class="breadcrumb-item active">Senarai Users</li>
 </ol>
 <div class="row">
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-4">
         <div class="card bg-primary text-white mb-4">
             <div class="card-body">
 
-                {{ $userAktif }}
+                {{ $userTotal }}
 
                 <!-- Komen dalam HTML -->
 
@@ -28,38 +28,30 @@
 
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="#">Jumlah Keseluruhan</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-4">
         <div class="card bg-warning text-white mb-4">
-            <div class="card-body"><?php echo $userInAktif; ?></div>
+            <div class="card-body">{{ $userRoleAdmin }}</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="#">Jumlah Admin</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
+    <div class="col-md-4">
         <div class="card bg-success text-white mb-4">
-            <div class="card-body">Success Card</div>
+            <div class="card-body">{{ $userRoleUser }}</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
+                <a class="small text-white stretched-link" href="#">Jumlah User</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger text-white mb-4">
-            <div class="card-body">Danger Card</div>
-            <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="#">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <div class="card mb-4">
