@@ -12,7 +12,9 @@ class TempahanController extends Controller
      */
     public function index()
     {
-        return view('tempahan.index');
+        $senaraiTempahan = Tempahan::paginate(10);
+
+        return view( 'tempahan.index', compact('senaraiTempahan') );
     }
 
     /**

@@ -52,38 +52,44 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Role</th>
+                    <th>Jenis Kenderaan</th>
+                    <th>No. Kenderaan</th>
+                    <th>Tarikh Tempahan</th>
+                    <th>Tarikh Mula</th>
+                    <th>Tarikh Akhir</th>
+                    <th>Tujuan</th>
+                    <th>Destinasi</th>
+                    <th>Status</th>
                     <th>Tindakan</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach( $senaraiUsers AS $person )
+                @foreach( $senaraiTempahan AS $booking )
                 <tr>
-                    <td>{{ $person->first_name }}</td>
-                    <td>{{ $person->last_name }}</td>
-                    <td>{{ $person->email }}</td>
-                    <td>{{ $person->phone ?? "Tiada No. Telefon" }}</td>
-                    <td>{{ $person->role }}</td>
+                    <td>{{ $booking->jenis_kenderaan }}</td>
+                    <td>{{ $booking->no_kenderaan }}</td>
+                    <td>{{ $booking->tarikh_tempahan }}</td>
+                    <td>{{ $booking->tarikh_mula }}</td>
+                    <td>{{ $booking->tarikh_akhir }}</td>
+                    <td>{{ $booking->tujuan }}</td>
+                    <td>{{ $booking->alamat_destinasi }}</td>
+                    <td>{{ $booking->status }}</td>
                     <td>
 
-                        <a href="{{ route('users.paparBorangEditUser', $person->id) }}" class="btn btn-info">Edit</a>
+                        <a href="{{ route('tempahan.edit', $booking->id) }}" class="btn btn-info">Edit</a>
 
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $person->id }}">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $booking->id }}">
 
                             Delete
 
                         </button>
 
-                        <form method="POST" action="{{ route('users.deleteRekodUser', $person->id) }}">
+                        <form method="POST" action="{{ route('tempahan.destroy', $booking->id) }}">
                             @csrf
                             @method('DELETE')
 
                             <!-- Modal -->
-                            <div class="modal fade" id="modal-delete-{{ $person->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="modal-delete-{{ $booking->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -93,7 +99,7 @@
 
                                     <div class="modal-body">
 
-                                        Adakah anda bersetuju untuk menghapuskan data {{ $person->first_name }}?
+                                        Adakah anda bersetuju untuk menghapuskan data {{ $booking->jenis_kenderaan }}?
 
                                     </div>
 
@@ -112,12 +118,12 @@
 
                     </td>
                 </tr>
-                @endforeach --}}
+                @endforeach
 
             </tbody>
         </table>
 
-        {{-- {{ $senaraiUsers->links() }} --}}
+        {{ $senaraiTempahan->links() }}
     </div>
 </div>
 @endsection
