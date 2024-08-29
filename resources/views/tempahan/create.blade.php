@@ -34,19 +34,22 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-12 mb-3">
                     <input type="text" name="nama_pemandu" class="form-control" placeholder="Nama Pemandu" value="{{ old('nama_pemandu') }}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 mb-3">
+                    <label>Tarikh Tempahan</label>
                     <input type="date" name="tarikh_tempahan" class="form-control" placeholder="Tarikh Tempahan" value="{{ old('tarikh_tempahan') }}">
                 </div>
                 <div class="col-md-4 mb-3">
+                    <label>Tarikh Mula Guna</label>
                     <input type="date" name="tarikh_mula" class="form-control" placeholder="Tarikh Mula Guna" value="{{ old('tarikh_mula') }}">
                 </div>
                 <div class="col-md-4 mb-3">
+                    <label>Tarikh Akhir Guna</label>
                     <input type="date" name="tarikh_akhir" class="form-control" placeholder="Tarikh Akhir Guna" value="{{ old('tarikh_akhir') }}">
                 </div>
             </div>
