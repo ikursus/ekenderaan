@@ -52,6 +52,7 @@
         <table id="datatablesSimple">
             <thead>
                 <tr>
+                    <th>Pemohon</th>
                     <th>Jenis Kenderaan</th>
                     <th>No. Kenderaan</th>
                     <th>Tarikh Tempahan</th>
@@ -66,6 +67,7 @@
             <tbody>
                 @foreach( $senaraiTempahan AS $booking )
                 <tr>
+                    <td>{{ $booking->first_name }} {{ $booking->last_name }}</td>
                     <td>{{ $booking->jenis_kenderaan }}</td>
                     <td>{{ $booking->no_kenderaan }}</td>
                     <td>{{ $booking->tarikh_tempahan }}</td>

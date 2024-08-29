@@ -14,6 +14,7 @@ class Tempahan extends Model
 
     // Maklumkan kepada model Tempahan data yang dibenarkan masuk ke table tempahan
     protected $fillable = [
+        'user_id',
         'jenis_kenderaan',
         'no_kenderaan',
         'nama_pemandu',

@@ -12,7 +12,12 @@ class TempahanController extends Controller
      */
     public function index()
     {
-        $senaraiTempahan = Tempahan::paginate(10);
+        //$senaraiTempahan = Tempahan::orderBy('id', 'desc')->paginate(10);
+        //$senaraiTempahan = Tempahan::orderBy('no_kenderaan', 'asc')->paginate(10);
+        $senaraiTempahan = Tempahan::leftJoin('users', 'tempahan.user_id', '=', 'users.id')
+                            ->orderBy('tempahan.id', 'desc')
+                            ->select('tempahan.*', 'users.first_name as first_name', 'users.last_name as last_name')
+                            ->paginate(10);
 
         return view( 'tempahan.index', compact('senaraiTempahan') );
     }
@@ -32,6 +37,7 @@ class TempahanController extends Controller
     {
         // Validate data dan ambil data tersebut
         $data = $request->validate( [
+            'user_id' => ['required', 'integer'],
             'jenis_kenderaan' => ['required'],
             'no_kenderaan' => ['required'],
             'tarikh_tempahan' => ['required', 'date'],
@@ -80,7 +86,14 @@ class TempahanController extends Controller
      */
     public function edit(Tempahan $tempahan)
     {
-        return view('tempahan.edit');
+        // DB::table('tempahan')->where('id', '=', $id)->first();
+        // $tempahan = Tempahan::find($id);
+        // $tempahan = Tempahan::findOrFail($id);
+        // $tempahan = Tempahan::where('id', '=', $id)->first();
+        // $tempahan = Tempahan::whereId($id)->first();
+        // $tempahan = Tempahan::firstOrCreate($id);
+
+        return view('tempahan.edit', compact('tempahan'));
     }
 
     /**
@@ -88,7 +101,24 @@ class TempahanController extends Controller
      */
     public function update(Request $request, Tempahan $tempahan)
     {
-        //
+         // Validate data dan ambil data tersebut
+         $data = $request->validate( [
+            'jenis_kenderaan' => ['required'],
+            'no_kenderaan' => ['required'],
+            'tarikh_tempahan' => ['required', 'date'],
+            'tarikh_mula' => ['required', 'date'],
+            'tarikh_akhir' => ['required', 'date'],
+            'nama_pemandu' => ['required'],
+            'tujuan' => ['required'],
+            'alamat_destinasi' => ['required'],
+            'status' => ['required']
+        ] );
+
+        $tempahan->update($data);
+
+        // Bagi respon berjaya
+        return redirect()->route('tempahan.index')->with('mesej-berjaya', 'Rekod berjaya dikemaskini');
+
     }
 
     /**
@@ -96,6 +126,9 @@ class TempahanController extends Controller
      */
     public function destroy(Tempahan $tempahan)
     {
-        //
+        $tempahan->delete();
+
+        // Bagi respon berjaya
+        return redirect()->route('tempahan.index')->with('mesej-berjaya', 'Rekod berjaya dihapuskan');
     }
 }
